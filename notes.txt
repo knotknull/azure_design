@@ -2,23 +2,167 @@ Microsoft Azure Architect Design
 ---------------------------------
 
 
+##########################################################################
+##  Microsoft Azure Solutions Architect: Design for Cost Optimization
+##########################################################################
+Data does not leave an Azure region unless specifically executed to.
+
+
+## Designing The Things That Cost Money In The Cloud
+##
+ - Services: VM (service tier, size, power, etc. )
+        1GB RAM / 2 Cores    vs.  32 GB RAM / 16 Cores
+
+ - Storage: Size:  GB, TB, PB,
+            Performance Tier:  Hot, Cool Archive
+
+ - Network Traffic:  ingress free, egress $$
+
+ - Software licenses :
+    -- could be included in service (Windows VM)
+    -- per user: Office 365 License
+
+
+## Managing and Reporting Costs
+##
+
+ - Azure Cost Management & Billing
+    - Free tool: analyze costs and manage invoices
+    Billing:
+        - Invoices
+        - Payment methods
+        - Billing address
+        - Tax ID
+
+    Cost Management:
+        - Cost Analysis:  resource type, location, tags, subscription, name, etc.
+        - Budgets : set limits on scopes:
+              - subscription / resource group
+        - Alerts :
+        - Connect to AWS : manage costs on both clouds
+        - Export billing data
+
+NOTE ON Budgets:
+  - can set budget on subscription or resource groups
+      - Alerts sent when % of budget hit
+      - NO SERVICES STOPPED !!
+
+
+Spending Limit on Subscription level CAN STOP SERVICES !!!
+
+
+ - Azure Advisors
+  - Gives Recommendations in performance, security, availability and COSTS
+    - Recommendations about costs
 
 
 
+## Reducing Costs
+##
+
+ - General Cost Reductions
+ - Discounts
+ - Azure spot VMs
+ - Reserved Capacity
+ - Bring your own license
+ - Auto start / stop
+
+
+ # General Cost Reductions
+  - Scale to right sized tiers
+  - Create policies
+      - created on resource tiers that can be created (basic, etc.)
+  - Cleanup unused resources
+  - Automatically scale down or in services when not being used
+
+ # Discounts
+  - Azure credits for Visual Studio subscribers
+  - Use Microsoft managed services provider (MSP)
+        - Manages Azure subscription for you
+        - Offer discount on Azure services
+
+  - Enterprise Agreement
+
+ # Azure spot VMs
+  - can get a discount of upto 90%
+  - Azure evicts VM
+        - When it needs capacity
+        - and/or when VM instance goes over agreed upon price
+  - Azure either stops or deletes VM (determined by you)
+
+NOTE: VMs w/ Spot enabled have no SLA (can be stopped at any time)
+
+ # Reserved Capacity
+  - reserved capacity for a specific sku
+  - 1 to 3 years
+  - Reduced price
+      - VMs, Storage, Databases, etc.
+  - Paid upfront or monthly
+      - Cancel or exchange anytime
+
+ # Bring your own license
+  - Must have licenses w/ Software Assurance
+  - Windows server / SQL Server, etc.
+
+ # Auto Start and Stop
+
+  - Automatically stop on schedule
+  - Azure DevTest Labs
+  - Azure Kubernetes Service : start / stop cluster
+  - Azure Synapse Analytics  : pause and resume compute
 
 
 
+## Access Tiers
+##
+ - Can change access tiers to storage
+  - can change individual blobs: Hot, Cool, Archive
+  - can change storage account default: Hot or Cool (not Archive)
+
+  - Hot: Fastest and most expensive
+
+  - Cool: store at least 30 days  ***
+    - Less expense
+    - Cheaper storage costs
+    - Higher access costs
+
+  - Archive: store at least 180 days  ***
+    - Least expensive
+    - slowest (offline storage)
+        - hourse to rehydrate
+    - cheapest storage costs
+    - highest access costs
+
+Can automate via Tracking (version for blobs) and  Lifecycle management
+   - rule to move blobs from hot to cool or archive
 
 
+## Reduce VM Costs
+##
+
+ - Spot Tiers
+    - Eviction Type:
+        - Capacity only
+        - Price of Capacity
+
+    - Eviction Policy:
+        - Stop / Deallocate
+        - Delete
+
+ - Bring Your Own License (BYOL)
+    aka Azure Hybrid Benefit
+    NOTE: Must have Windows Server License w/ Software Assurance
+
+ - Auto shtudown
+    - shutdown during specified times
 
 
+## Azure Policy
+##
 
-
-
-
-
-
-
+ - Create policies to control costs
+    - create policy to restrict VM skus
+    - assign policy to management or resource group 
 
 
 .
