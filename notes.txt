@@ -162,7 +162,246 @@ Can automate via Tracking (version for blobs) and  Lifecycle management
 
  - Create policies to control costs
     - create policy to restrict VM skus
-    - assign policy to management or resource group 
+    - assign policy to management or resource group
+
+
+
+
+#################################################################################
+##  Microsoft Azure Solutions Architect: Design a Logging and Monitoring Solution
+#################################################################################
+Data does not leave an Azure region unless specifically executed to.
+
+
+## Options for Monitoring Applications in Azure
+##
+# App Level
+ - Application Insights
+    - part of Azure Monitor (stand alone)
+ - Visual Studio App Center                       << App Level
+    - Mobile Apps
+
+# Subscription Level
+ - Network Watcher
+      - Netowrk Traffic
+ - Monitor
+ - Security Center
+ - Advisor
+ - Sentinel
+      - Works w/ Security Center, looks for threats
+
+
+## Azure Monitor  +  Application Insights
+##
+
+# Monitor
+ - Activity Logs
+ - Metrics
+ - Azure Services
+ Drill down to data
+ - Kusto query language
+ - Workbooks
+ - Insights
+
+Automate alert responses
+
+# Azure Application Insights
+Use to monitor web and desktop apps in detail
+
+Monitors and alerts on
+ - Availability
+ - Performance
+ - Failures
+ - Usage
+
+- Ping and multi-step tests
+- Send data to Log Analytics Workspace (datalake)
+- Export raw data: JSON format
+- Application Map
+    - shows dependencies
+
+# Azure Monitor Ecosystem
+
+[Azure    ]      ----+      Azure Monitor Logs      ----+    [Log Analytics]
+[Resources]          |        [.........]               |
+                     |    Log Analytics Workspace       |    [Dashboards ]
+[Applications]       |                                  |
+                     |-->                               |--> [Workbooks  ]
+[VM Agents]          |                                  |    [Insights   ]
+                     |      Azure Monitor Logs          |    [Alerts     ]
+[Data Collector]     |         [.........]              |
+[ APIs         ] ----+      Time-series data store  ----+    [Metrics Explorer]
+
+
+# Data Retention
+  Application Insights
+    - Sends data to Log Analytics Workspace
+    - Raw Data up to 730 Days ***
+        - Export for more
+    - Aggregated Data for 90 Days ***
+    - Debug Snapshots for 15 days
+
+  Azure Monitor Logs / Log Analytics Workspace
+    - Up to 730 Days ***
+    - Export to
+        - Storage Account
+        - Event Hubs
+
+  Azure Monitor Metrics / Time-series data store
+    - for 93 Days ***
+    - Performance counters from Log Analytics Agents
+        - 31 to 730 Days ***
+
+
+# Agents
+ Windows Agents
+  - Azure Monitor Agent
+      - Azure: Event, Performance
+  - Diagnostics extensions
+      - Azure: Event, Performance, file logs, crash dumps
+  - Log Analytics Agent
+      - Azure / other cloud / on prem: Event, Performance,  file logs
+  - Dependency Agent
+      - Azure / other cloud / on prem: Process dependency, network, metrics
+
+ Linux Agents
+  - Azure Monitor Agent
+      - Azure: Syslog, Performance
+  - Diagnostics extensions
+      - Azure: Syslog, Performance
+  - Telegraf Agent
+      - Azure / other cloud / on prem: Performance
+  - Log Analytics Agent
+      - Azure / other cloud / on prem: Syslog, Performance
+  - Dependency Agent
+      - Azure / other cloud / on prem: Process dependency, network, metrics
+
+
+## Event Routing
+Dashboard > Monitor > Alerts > New alert rule
+
+  - Scope
+      - Resource type
+      - Specific Resource
+  - Condition
+      - Signal
+      - Alert Logic
+  - Actions
+      - Action Group
+      - Resource Group
+      - Notifications
+      - Actions
+          - Action Group
+  - Alert Rule
+      - Resource Group
+      - Severity
+
+
+Can use Workbooks to query Log Analytics Workspace
+    workbooks = reports that run predefined queries
+
+
+## Azure Network Watcher
+##
+  - Monitor and repair network health of IaaS
+  - Capture network packet data
+  - Network topology
+  - Audit network security
+  - Regional Service
+      - enabled when create virtual network in region
+
+ Diagnostics
+  - Diagnose network traffic problem
+  - Diagnose network routing problem
+  - Capture packets
+  - Determine latencies between regions / ISP
+  - View security logs for network interface
+
+ Metrics and Logs
+  - Analyze traffice to/from NSG
+  - View security logs for network resources
+
+
+
+## Azure Security Center, Azure Advisor , Azure Sentinel
+##
+
+# Azure Security Center
+  - monitor and prevent security issues
+  - prevent attacks from happening
+      - offers recommendations
+  - Monitor
+      - Security state of services
+      - Threats and vulnerabilities
+
+NOTE: works in Azure, on-pre and other clouds
+
+# Azure Advisor
+  - get overview of recommendations:
+      - Reliability
+      - Security
+      - Performance
+      - Cost
+      - Operational Excellence
+
+# Azure Sentinel
+  - monitor, analyze, investigate, respond to security issues
+  - SIEM: Security Information Event Management  system
+  - SOAR: Security Orechestration Automated Response
+
+  Collects data in Log Analytics Workspace
+  Detect and analyze incidents
+  Hunt for suspicious activities with AI
+  Respond to incidents w/ orchestration and automation
+
+
+# Azure Security Center  vs.  Azure Sentinel
+
+Security Center                           Sentinel
+  - Collect & Prevent                       - Collect & Prevent
+      - Visibility                              - Visibility
+      - Prevent                                 - Prevent
+  - Detect                                  - Detect
+      - Analytics                               - Analytics
+                                                - Hunting
+                                            - Investigate
+                                                - Incidents
+                                            - Respond
+                                                - Automation
+Security Center
+  - Azure Defender (paid monitoring) per resource
+      - detection and prevention of security issues
+
+  - Cloud connectors
+      - Monitor AWS and GCP Accounts
+
+
+# Comparing Options for Monitoring in Azure
+
+
+Monitor a web or   ........................... App Insights
+desktop app
+
+Monitor mobile app ............................ App Center
+
+Investigate and
+respond to sec. issues  ....................... Azure Sentinel                                                        X
+
+Inspect network Traffic  ...................... Network Watcher
+
+Overview of all
+monitoring data   .............................. Azure Monitor
+
+Monitor and prevent
+security issue   .............................. Security Center                                          X
+
+Overview of
+actionable recommendations  .................... Azure Advisor                                          X                                             X
+
+Sentinel  :  investigate and respond
+Sec Center:  monitor and prevent
+
+
 
 
 .
