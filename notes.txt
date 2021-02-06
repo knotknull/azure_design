@@ -1,6 +1,41 @@
 Microsoft Azure Architect Design
 ---------------------------------
+Channels > My Channels > Azure Architect Design
 
+List of courses:
+
+# Design Monitoring:
+ ✓  Cloud Certifications: Microsoft Azure AZ-303 and AZ-304 Exam Requirement Changes
+ ✓  Microsoft Azure Solutions Architect: Introduction to the AZ-304 Exam
+ ✓ Microsoft Azure Solutions Architect: Design for Cost Optimization
+ ✓ Microsoft Azure Solutions Architect: Design a Logging and Monitoring Solution
+ ✓  Exam Alert: Design Monitoring in Microsoft Azure
+
+# Design Identity and Security:
+ - Microsoft Azure Solutions Architect: Design Authentication
+ - Microsoft Azure Solutions Architect: Design Authorization
+ - Microsoft Azure Solutions Architect: Design Governance
+ - Microsoft Azure Solutions Architect: Design Security for Applications
+ - Exam Alert: Design Identity and Security in Microsoft Azure
+
+# Design Data Storage:
+ - Microsoft Azure Solutions Architect: Design for Databases
+ - Microsoft Azure Solutions Architect: Design Data Integration
+ - Microsoft Azure Solutions Architect: Design Storage Accounts
+ - Exam Alert: Design Data Storage in Microsoft Azure
+
+# Design Business Continuity:
+ - Microsoft Azure Solutions Architect: Design for Backup and Recovery
+ - Microsoft Azure Solutions Architect: Design for High Availability
+ - Exam Alert: Design Business Continuity in Microsoft Azure
+
+# Design Infrastructure:
+ - Microsoft Azure Solutions Architect: Design a Computer Solution
+ - Microsoft Azure Solutions Architect: Design a Network Solution
+ - Microsoft Azure Solutions Architect: Design an Application Architecture
+ - Microsoft Azure Solutions Architect: Design Migrations
+ - Exam Alert: Design Infrastructure in Microsoft Azure
+ - Microsoft Azure Solutions Architect: Preparing for the AZ-304 Exam
 
 ##########################################################################
 ##  Microsoft Azure Solutions Architect: Design for Cost Optimization
@@ -400,6 +435,223 @@ actionable recommendations  .................... Azure Advisor                  
 
 Sentinel  :  investigate and respond
 Sec Center:  monitor and prevent
+
+
+
+#################################################################################
+##  Exam Alert: Design Monitoring in Microsoft Azure
+#################################################################################
+
+## Summary: Design for Cost Optimization
+##
+  - Azure Cost Management and Billing
+    Billing:
+        - Invoices
+        - Payment methods
+        - Billing Address
+        - Tax ID
+
+    Cost Management:
+        - Cost Analysis
+        - Budgets
+        - Alerts
+        - Connect to AWS
+
+      Policy: to not allow usage of certain tiers
+      Reduce Costs:
+        - Discounts             - Spot VMs
+        - Reserved Capacity     - BYO License
+        - Scale In / Down       - Auto Start / Stop
+
+      Spot VMs :
+        - Up to 90% discounts
+        - Azure Evicts when needs capacity ( or when > agreed price)
+        - Stop or Delete VM
+
+
+  - Azure Advisor
+
+## Summary: Design a Solution for Logging and Monitoring
+##
+  - Monitoring Apps:
+        - App Insights            - App Center  ]--  App Level
+        - Network Watcher         - Monitor     ]-
+        - Security Center         - Adviso      ] |- Subscription Level
+        - Sentinel                              ]-
+
+  # Azure Monitor writes to two areas:
+      Log Analytics Workspace / Azure Monitor Logs
+      Time-series data store  / Azure Monitor Metrics
+
+# Comparing Options for Monitoring in Azure
+
+Monitor a web or desktop app  ................. App Insights
+
+Monitor mobile app ............................ App Center
+
+Investigate and
+respond to sec. issues  ....................... Azure Sentinel                                                        X
+
+Inspect network Traffic  ...................... Network Watcher
+
+Overview of all
+monitoring data   ............................. Azure Monitor
+
+Monitor and prevent
+security issue   .............................. Security Center                                          X
+
+Overview of
+actionable recommendations  ................... Azure Advisor                                          X                                             X
+
+Sentinel  :  investigate and respond
+Sec Center:  monitor and prevent
+
+
+
+## Design Monitoring "Need-to-know" Exam Information
+##
+
+# Focus Cost Optimization
+
+- Azure Cost Management: main cost management service
+- Spending Limit != Budget
+    - Spending Limit can STOP services
+    - Budget alerts on getting close to overages
+- Use tags to group resources
+- Spot VM has no SLA
+- Scale in (to decrease costs)
+- Cool tier meant for data stored at least 30 days ***
+- Archive tier meant for data stored at least 180 days ***
+- Azure pricing calculator
+
+
+# IGNORE Cost Optimization
+  - prices of individual services
+  - specific features of cost management + Billing
+  - Azure VM SKUs
+
+
+# Focus Logging and Monitoring
+  - Service Options for monitoring and logging
+  - What to use when
+  - Network Watcher / App Insight provide maps
+    - Network Watcher: network topology
+    - App Insight    : App dependencies
+
+  - Data store differences
+    - Azure Monitor Logs:
+        - Logs Analytics Workspace
+        - Logs Analytics
+        - Kusto Query Language
+    - Azure Monitor Metrics:
+        - Time series Analytics
+        - Metric Explorer
+
+  - Agents:
+        - Log Analytics Agent (on-prem and Azure)
+        - Telegraf Agent is linux specific for performance
+        - Both TO BE REPLACED BY:  Azure Monitor Agent
+Retention Times:
+
+# Data Retention
+  Application Insights
+    - Raw Data up to 730 Days ***
+    - Aggregated Data for 90 Days ***
+    - Debug Snapshots for 15 days
+
+  Azure Monitor Logs / Log Analytics Workspace
+    - Up to 730 Days ***
+
+  Azure Monitor Metrics / Time-series data store
+    - for 93 Days ***
+    - Performance counters from Log Analytics Agents
+        - 31 to 730 Days ***
+
+# IGNORE Logging and Monitoring
+    - what data is logged
+    - details of service features
+    - Kusto query lang
+    - monitoring logging costs
+
+
+
+
+#################################################################################
+##  Microsoft Azure Solutions Architect: Introduction to the AZ-304 Exam
+#################################################################################
+
+## Microsoft Certification Path
+##
+
+## Azure Solutions Architect Expert Certification
+##
+  - design and implement Azure solution
+      - compute, storage, network, sec auth/auth, HA/DR, basic devops procs
+
+
+## AZ-303 vs. AZ-304
+##
+  - Pass both for cert
+  - AZ-303: Focus on implementation
+  - AZ-304: Focus on design
+
+
+## AZ-304 Key Themes
+##
+  - Architect complete solutions
+      - Requirements
+      - Interactions
+      - Limit / Optimizations
+      - Resiliency
+      - Authentication
+      - Monitoring and Operations
+
+## Preparing for AZ-304
+##
+
+## Review of Required Knowledge
+##
+
+## AZ-304 Functional Groups
+    - Design monitoring            : 10 - 15 %
+    - Design identity and security : 25 - 30 %
+    - Design data storage          : 15 - 20 %
+    - Design business continuity   : 10 - 15 %
+    - Design infrastructure        : 25 - 20 %
+
+## Design Monitoring
+  - Design for cost optimization
+  - Design solution for logging / monitoring
+
+## Design Identity and Security
+  - Design authentication
+  - Design authorization
+  - Design governance (policies, tagging)
+  - Design security for application
+
+## Design Data Storage
+  - Design a solution for databases
+  - Design data integration
+  - Select an appropriate storage account
+
+## Design Business Continuity
+  - Design a solution for backup and recovery (RPO, RTO)
+  - Design for high availability
+
+## Design Infrastructure
+  - Design a compute solution
+  - Design a network solution
+  - Design an application architecture
+  - Design migrations
+
+
+
+
+
+
+
+
+
 
 
 
