@@ -652,13 +652,124 @@ Retention Times:
 ##  Microsoft Azure Solutions Architect: Design Authentication
 #################################################################################
 
+## Azure Active Directory Refresher
+  - Azure Active Directory is an enterprise identity provider
+  - Global Available
+  - Utilizes a flat structure
+        - allows users, groups other objects to be created
+  - Cloud authentication protocols instead of Kerberos, NTLM
 
 
 
+## Azure AD High Level View
+
+                            [   Microsoft         ]<------->[Microsoft Apps]
+  [Active Directory]<------>[   Azure             ]
+  [Domain Services ]        [   Active            ]<------->[Non-Microsoft Apps]
+                            [   Directory         ]<------->[On Prem Apps]
 
 
+## Populating Azure AD
+  - Azure AD supports various types of objects
+  - Accounts are often synced from AD
+  - Azure AD Connect used w/ optional password hash sync ***
+      - provides users w/ SSO experience
+  - Cloud Groups can contain synced users
+  Password Hash is a hash of the hash
+    - per user salt
+    - 1000 HMAC-SHA256 iterations
+
+# Benefits of Password Hash in Azure
+  - Break Glass: if primary auth method is compromised switch to cloud auth
+  - Smart Lockout: will lockout Azure AD account and not AD account
+  - Breach Replay Protection:  check for credentials on web
+
+## Azure AD Connect
+  - can selectively replicate objects based on Org Units (OUs)
+  - group filtering available (non-prod)
+  - optionally replicate hash of password hash
+  - replicates on 30 min interval, password change then every 2 min
+  - Only one instance of AAD Connect can be replicating.
+        - stage / stand by
 
 
+  [ AD ] =====>> [ AAD Connect ] =====>> [ Azure AD ]
+
+
+## Azure AD Modern Authentication Options
+##
+  - Cloud Only (authentication performed in Azure AD)
+  - Hybrid (certain authenication operations utilize non-Azure AD )
+        i.e. Domain Controllers / Federation
+
+NOTE: Cloud Only is only option that enables global scale and resiliency
+
+## Cloud Only Authentication
+##
+  - Requires password has option to be enabled in Azure AD Connect
+  - Username and password is sent to Azure AD
+  - Authentication is performed natively in Azure AD utilizing stored password hash
+  - Organization AD NOT involved in auth flow
+  Considerations:
+  ---------------
+    - Has auto-defense capabilities and smart lockout
+    - Account locked out in AD, can still be used in Azure AD
+    - Account disabled in AD may take up to 30 min to be reflected in Azure AD
+    - Expired password in AD will not block use in Azure AD
+    - Time restrictions for the AD account are not implemented for Azure AD
+
+## Hybrid Authentication
+##
+
+# Pass Through Authentication (PTA)
+  - Username and password sent to Azure AD but the password is validated
+     against Active Directory
+
+      - leverages an agent that looks for auth requests from Azure AD and
+         authenticates against AD
+      - multiple auth agents can be deployed
+      - can be deployed as part of Azure AD Connect deployment
+      - Agent establishes outbound connection over 443 to Azure AD
+         removing need for open ports / DMZ
+      - Does not require password hashes to be stored in Azure AD
+      - Can support multiple forests (?) w/ forest trusts
+
+  [ user ] <---> [ AAD ] <---> [ pass-thru auth agent ] <---> [ AD ]
+
+
+# Federations
+  - Username and password sent to federated services which then
+     enables the authentication
+
+      - Orgs had federation services to enable SSO to cloud services from on-prem
+      - only way to enable SSO
+      - support for on-prem policies, 3rd Party MFA, cert based authentication
+NOTE:
+    - possible to federate between on-prem and Azure AD
+    - if app federations have moved to Azure AD, a lot of infrastructure
+    - only initial authentication would go to federation
+    - All other service access utilizes refresh token in Azure AD per OAuth
+
+
+## Choosing an Authentication Method
+##
+  - no cost element in Azure AD for which method used
+  - can take advantage of Conditional Access
+  - hashes in Azure AD for break glass option
+preference:
+  1. Cloud authentication w/ password hash
+  2. Pass-through authentication
+  3. Federation
+
+https://docs.microsoft.com/en-us/azure/active-directory/hybrid/choose-ad-authn
+
+
+## SSO
+  - Same Sign-on: user has to type credentials
+  - Seamless Sign-on: Passowrd hash and PTA
+  - Single Sign-on: Federation
+  - Seamless and Single provide same end-user experience for users on
+      corporate device on corporate network
 
 
 
