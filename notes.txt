@@ -1,41 +1,41 @@
 Microsoft Azure Architect Design
 ---------------------------------
 Channels > My Channels > Azure Architect Design
-
+21 Hours
 List of courses:
 
 # Design Monitoring:
- ✓  Cloud Certifications: Microsoft Azure AZ-303 and AZ-304 Exam Requirement Changes
- ✓  Microsoft Azure Solutions Architect: Introduction to the AZ-304 Exam
+ ✓ Cloud Certifications: Microsoft Azure AZ-303 and AZ-304 Exam Requirement Changes
+ ✓ Microsoft Azure Solutions Architect: Introduction to the AZ-304 Exam
  ✓ Microsoft Azure Solutions Architect: Design for Cost Optimization
  ✓ Microsoft Azure Solutions Architect: Design a Logging and Monitoring Solution
- ✓  Exam Alert: Design Monitoring in Microsoft Azure
+ ✓ Exam Alert: Design Monitoring in Microsoft Azure
 
 # Design Identity and Security:
- - Microsoft Azure Solutions Architect: Design Authentication
- - Microsoft Azure Solutions Architect: Design Authorization
- - Microsoft Azure Solutions Architect: Design Governance
- - Microsoft Azure Solutions Architect: Design Security for Applications
- - Exam Alert: Design Identity and Security in Microsoft Azure
+ - Microsoft Azure Solutions Architect: Design Authentication   83 min
+ - Microsoft Azure Solutions Architect: Design Authorization    66 min
+ - Microsoft Azure Solutions Architect: Design Governance       70 min
+ - Microsoft Azure Solutions Architect: Design Security for Applications  69 min
+ - Exam Alert: Design Identity and Security in Microsoft Azure  41 min
 
 # Design Data Storage:
- - Microsoft Azure Solutions Architect: Design for Databases
- - Microsoft Azure Solutions Architect: Design Data Integration
- - Microsoft Azure Solutions Architect: Design Storage Accounts
- - Exam Alert: Design Data Storage in Microsoft Azure
+ - Microsoft Azure Solutions Architect: Design for Databases    70 min
+ - Microsoft Azure Solutions Architect: Design Data Integration 57 min
+ - Microsoft Azure Solutions Architect: Design Storage Accounts 62 min
+ - Exam Alert: Design Data Storage in Microsoft Azure   45 min
 
 # Design Business Continuity:
- - Microsoft Azure Solutions Architect: Design for Backup and Recovery
- - Microsoft Azure Solutions Architect: Design for High Availability
- - Exam Alert: Design Business Continuity in Microsoft Azure
+ - Microsoft Azure Solutions Architect: Design for Backup and Recovery  72 min
+ - Microsoft Azure Solutions Architect: Design for High Availability    38 min
+ - Exam Alert: Design Business Continuity in Microsoft Azure      42 min
 
 # Design Infrastructure:
- - Microsoft Azure Solutions Architect: Design a Computer Solution
- - Microsoft Azure Solutions Architect: Design a Network Solution
- - Microsoft Azure Solutions Architect: Design an Application Architecture
- - Microsoft Azure Solutions Architect: Design Migrations
- - Exam Alert: Design Infrastructure in Microsoft Azure
- - Microsoft Azure Solutions Architect: Preparing for the AZ-304 Exam
+ - Microsoft Azure Solutions Architect: Design a Computer Solution    77 min
+ - Microsoft Azure Solutions Architect: Design a Network Solution     85 min
+ - Microsoft Azure Solutions Architect: Design an Application Architecture  112 min
+ - Microsoft Azure Solutions Architect: Design Migrations             54 min
+ - Exam Alert: Design Infrastructure in Microsoft Azure               39 min
+ - Microsoft Azure Solutions Architect: Preparing for the AZ-304 Exam 48 min
 
 ##########################################################################
 ##  Microsoft Azure Solutions Architect: Design for Cost Optimization
@@ -643,6 +643,16 @@ Retention Times:
   - Design a network solution
   - Design an application architecture
   - Design migrations
+
+
+
+
+
+#################################################################################
+##  Microsoft Azure Solutions Architect: Design Authentication
+#################################################################################
+
+
 
 
 
