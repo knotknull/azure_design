@@ -772,6 +772,32 @@ https://docs.microsoft.com/en-us/azure/active-directory/hybrid/choose-ad-authn
       corporate device on corporate network
 
 
+## Azure AD Connect Health
+##
+  - Available as part of Azure AD Premium P1 and above
+  - Provides comprehensive health
+      - AD via an agent on domain controllers
+      - ADFS via an agent on federation servers
+  - Agents can be configured to auto update
+  - Has notification options to send email in the event of problems
+
+
+
+Home > Azure Active Directory Connect Health
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
