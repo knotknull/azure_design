@@ -786,15 +786,45 @@ https://docs.microsoft.com/en-us/azure/active-directory/hybrid/choose-ad-authn
 Home > Azure Active Directory Connect Health
 
 
+## Azure AD B2B 
+##
+
+- Partners own id can be added as a known guest identity and given 
+permissions to resources 
+
+    - guest is still using their own identity 
+    - authentication happening against their source provider
+        - Azure AD
+        - Microsoft Account
+        - Google identity (GMail)
+        - Direct Federation (SAML/WS-FED)
+        - OTP  (One Time Password)
+
+- Guests are invitded and then redeem the invite
+    - can be bulk added via PowerShell, portal solutions, entitlement management
+
+NOTE: Azure AD Premium features extend using a 5:1 ratio to  
+      B2B users, e.g. for every 1 Premium AAD user, can be extended 
+      to 5 B2B users.
 
 
+# Entitlement Management 
+  - enables key rsources to be packaged and made available 
+    via access packages 
+
+  - Users and guests can request an access package 
+  - Access package can include:
+      - AAD security group membership
+      - Ofice 365 group and team membership
+      - SharePoint Online site membership
+      - Enterprise app assignment
+
+  - Access packages are organized into catalogs
+  NOTE: Azure AD P2 feature 
 
 
-
-
-
-
-
+## Controlling Azure AD Authentication and User Experience 
+## 
 
 
 
