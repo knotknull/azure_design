@@ -786,13 +786,13 @@ https://docs.microsoft.com/en-us/azure/active-directory/hybrid/choose-ad-authn
 Home > Azure Active Directory Connect Health
 
 
-## Azure AD B2B 
+## Azure AD B2B
 ##
 
-- Partners own id can be added as a known guest identity and given 
-permissions to resources 
+- Partners own id can be added as a known guest identity and given
+permissions to resources
 
-    - guest is still using their own identity 
+    - guest is still using their own identity
     - authentication happening against their source provider
         - Azure AD
         - Microsoft Account
@@ -803,16 +803,16 @@ permissions to resources
 - Guests are invitded and then redeem the invite
     - can be bulk added via PowerShell, portal solutions, entitlement management
 
-NOTE: Azure AD Premium features extend using a 5:1 ratio to  
-      B2B users, e.g. for every 1 Premium AAD user, can be extended 
+NOTE: Azure AD Premium features extend using a 5:1 ratio to
+      B2B users, e.g. for every 1 Premium AAD user, can be extended
       to 5 B2B users.
 
 
-# Entitlement Management 
-  - enables key rsources to be packaged and made available 
-    via access packages 
+# Entitlement Management
+  - enables key rsources to be packaged and made available
+    via access packages
 
-  - Users and guests can request an access package 
+  - Users and guests can request an access package
   - Access package can include:
       - AAD security group membership
       - Ofice 365 group and team membership
@@ -820,15 +820,113 @@ NOTE: Azure AD Premium features extend using a 5:1 ratio to
       - Enterprise app assignment
 
   - Access packages are organized into catalogs
-  NOTE: Azure AD P2 feature 
+  NOTE: Azure AD P2 feature
 
 
-## Controlling Azure AD Authentication and User Experience 
-## 
+## Controlling Azure AD Authentication and User Experience
+##
+
+# Azure AD Multi-Factor Authentication (MFA)
+  - something i know:  passowrd or pin
+  - something i have:  phone or laptop
+  - something i am  :  biometrics
+
+- Part of Azure AD Premium
+  - can be integrated w/ conditional access
+
+- Azure AD MFA available for Office apps / management part of Ofice 365
+
+- Azure AD MFA free for all Global Admins
+  - available for free as part of security defaults
+
+Azure Acive Directory > Properties > Manage Security defaults
+    > Enable Security defaults [Yes]
+      - will disable legacy authentication
+      - make admins use MFA
+      - makes users register for MFA in 14 days
+      - prompts users to use MFA for heightened risk (??)
+      - Can only use authenticator application
+
+Methods: Utilizes users phone
+  - Call
+  - Text
+  - Authenticator app via a code or approval notification
 
 
+Azure Active Directory > Security > MFA > Configure
+    > Additional cloud-based MFA settings
+NOTE: NOT Manage MFA Server
+
+    - app passwords
+    - trusted ips
+    - verification options
+          - call to phone
+          - Test message to phone
+          - Notification through mobile app
+          - Verification code from mobile app or hardware token
+
+- Support for OATH-compatible TOTP (time-based token)
+   that show a code
+- Can support on-prem services via NPS (Network Policy Server) extension
+   to support RADIUS
+- 3rd party cloud-based MFA can be integrated
+    i.e. Conditional Access
+
+# End User MFA Registration
+- User will be forced to register for MFA when accessing a server
+  that requires it
+
+Use Conditional Access for heightened access w/ MFA
+  - Conditional Access has built-in policy to enable MFA for admins
+
+Azure Active Directory > Security > Conditional Access  | Policies
+  - MFA for GAs accessing Azure Portal if not AAD joined
+      - Global Admin Role
+      - Azure Management
+      - Grant Access:
+            - Require MFA
+            - Require device to be marked as compliant
+            - Require Hybrid Azure AD joined device
+            - Require protected client apps
+      Cloud Apps or actions > User Actions > Register security information
+
+https://aka.ms/MFAsetup
+
+Azure AD Identity Protection (P2)
+  - includes policy to require MFA registration for selected users
 
 
+# Life of a Token
+
+[Client]                [Azure AD]                [Service]
+   -------------------------------------------------->
+
+[RT][AT]<------------  [Realm Discovery] <-------------
+
+   --------------------------------------------------> [AT]
+
+   ------------------------>[RT]
+
+[RT][AT]<-----------------------
+
+   --------------------------------------------------> [AT]
+
+# Life of a Token on Another Service
+[Client]                [Azure AD]                [Service 2]
+   ------------------------>[RT]
+
+[RT][AT2]<----------------------
+
+   --------------------------------------------------> [AT2]
+
+[ST]<--------------------------------------------------
+
+   --------------------------------------------------> [ST]
+
+RT=Refresh Token
+AT=Access  Token (short lived, 60 min)
+NOTE: Refresh Token has a rolling window / doesn't expire
+  Once Authenticated, use Refresh Token for initial service and subsequent services 
 
 
 
