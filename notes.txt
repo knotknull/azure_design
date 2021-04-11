@@ -926,7 +926,106 @@ Azure AD Identity Protection (P2)
 RT=Refresh Token
 AT=Access  Token (short lived, 60 min)
 NOTE: Refresh Token has a rolling window / doesn't expire
-  Once Authenticated, use Refresh Token for initial service and subsequent services 
+  Once Authenticated, use Refresh Token for initial service and subsequent services
+
+
+# Conditional Access
+
+  - P1 feature w/ P2 required for user risk integration (????)
+  - Authorization but can be tied to stronger Authentication
+    i.e Must use MFA
+  - Can use locations / terms of use
+
+Azure Active Directory > Security > Conditional Access | Policies
+    > Named locations
+        - Set of IP address (NAT Gateway, etc.)
+            - Ranges of IP Address can be marked as "Trusted"
+        - Countries / Regions
+
+Azure Active Directory > Security > Conditional Access | Policies
+    > Terms of Use
+        - PDF Document
+        - Terms of Use displayed and user has to accept to move forward
+
+
+Can Report Only Conditional Access to see what would happen before enabling
+specific Conditional Access
+
+
+Azure Active Directory > Security > Conditional Access | Policies
+    > What If
+    - What if scenarios for Conditional Access configurations
+      - shows which policies would and would not apply
+
+# Using Conditional Access
+  - Policies can be enabled or disabled
+  - What If enables impact of policy to be evaluated
+  - If multiple policies apply then all requirements must be met
+  - Careful of all users / all cloud apps
+      - Have excluded group of admins
+      - Bypass group
+  - Policies apply to all, including B2B
+
+
+# End User Self-Service
+ myapplications.microsoft.com
+
+ - end user starting point
+ - AKA My Apps
+ - Provides access to assigned apps, group mgmt, My Account, My Access
+ - My Apps extension for browsers (why??)
+
+Azure Active Directory > User settings > Manage user feature preview settings
+    > Users can use preview features for My Apps
+        [None   Selected   All]
+
+
+ - Self-service Password Reset
+  - enable users to reset
+  - password reset portal / challenges
+  https://passwordreset.microsoftonline.com
+      - Office Phone
+      - Mobile Phone
+      - Alternate email
+      - Security Questions
+
+Azure Active Directory > Password reset | Properties
+    > Authentication methods
+        - # of methods required to reset [ 1   2 ]
+            - Mobile app code
+            - Email
+            - Mobile Phone
+            - Office Phone
+            - Security Questions
+              - # of questions to register  [3    4    5]
+              - # of questions to reset     [3    4    5]
+              - Predefined / Custom
+
+    > Registration
+        - Require users to register when signing in  [Yes    No]
+
+
+# Combined Security Registration
+  - Combined sec reg unifies MFA and Self-service password reset
+
+Azure Active Directory > User Settings > Manage user feature preview settings
+    > Users can use the combined security information registration experience
+        [None     Selected      All]
+
+
+
+#################################################################################
+##  Microsoft Azure Solutions Architect: Design Authorization
+#################################################################################
+
+
+
+
+
+
+
+
+
 
 
 
