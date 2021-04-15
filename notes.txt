@@ -1019,14 +1019,43 @@ Azure Active Directory > User Settings > Manage user feature preview settings
 #################################################################################
 
 
+## Authentication (AuthN) and Authorization (AuthZ)
+## 
 
 
+Authentication (AuthN):
+    - Proving a pincipal really is that principal
+    - Users, Service Principals, Applications, Resources, etc.
+
+Authorization (AuthZ):
+    - Controlling what a principal can do
+    - Fine and Coarse grained
+        Coarse:  Can access application
+        Fine  :  Can access specific actions on specific objects
+                      - Enforced within app or service
+                      - RBAC within Azure Resource Manager
 
 
+## Authentication in Azure AD
+## 
+- Various levels of authorization that apply to Azure AD
+    - User consent for applications  that integrated w/ Azure AD 
+          - OAuth 2.0:  get authorization on users behalf for access
 
+    - Authorization of actions against Azure resources and Azure AD
+          - Subscription, Azure Resource Manager (ARM)
 
+    - Follow principal of Least Privilege and Just In Time
 
+Least Privilege:  Giving only the permission to perform the required function
+                    - minimum rights on minimum scope
+                    minimizes bad actors
 
+Just In Time   :  Have heightened permissions only when needed
+                    - multiple roles for needed permissions
+
+## Resource Structure in Azure
+## 
 
 
 
