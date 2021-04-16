@@ -1057,6 +1057,78 @@ Just In Time   :  Have heightened permissions only when needed
 ## Resource Structure in Azure
 ## 
 
+- Can only auth to 1 Azure AD
+- Managemement Groups have 1 auth
+- Subscription can only live in 1 Mgmt Grp
+- Create Resource Groups under Subscription 
+- Create Resources under a Resource Group
+
+Authorization by granting Roles (actions, permissions) 
+to security principals (users, groups)  at a scope
+          scope:   Management Groups
+                   Subscriptions 
+                   Resource Groups 
+                   or even Resource (not advised)
+
+
+                         Azure Resource Structure
+
+
+                                                  ┌───────────┐
+Policy  -------│   │                              │ Azure AD  │   Only 1 Azure AD
+               │   │  I                           └───────────┘
+Cost Mgmt      │   │
+               │   │  N
+Policy    │    │   │                                   ┌──────┐     
+  │       │    │   │  H                                │ Root │     -
+  │       │    └───┼─────────────────────────────────> └──────┘     │
+  │       │        │  E                                             │
+  │       │        │                             ┌────┐   ┌────┐    │ Management
+  │       │        │  R                          │ RG │   │ RG │    │
+  │       │        │                             └────┘   └────┘    │ Groups
+  │       │        │  I                                             │
+  │       └────────┼───────────────────> ┌────┐  ┌────┐  ┌────┐     │
+  │                │  T                  │ RG │  │ RG │  │ RG │     │
+  │                │                     └─┬──┘  └────┘  └──┬─┘     -
+  │                │  A                    │                │       
+  │                │                 ┌─────┴─────┐          │
+  │                │  N              │           │          │       -
+  └────────────────┼────────────>  ┌─┴─┐        ┌┴──┐     ┌─┴─┐     │
+                   │  C            │ S │        │ S │     │ S │     │ Subscriptions
+                   │               └─┬─┘        └───┘     └───┘     │  (sub in only 1 MG)
+                   v  E              │                              -
+                                     │                              
+        ┌────────────────────────────┴───────────────────┐
+        │                                                │          -
+        │  ┌────┐  ┌────┐  ┌──────────────────────────┐  │          │
+        │  │ RG │  │ RG │  │                       RG │  │          │ Resource
+        │  └────┘  └────┘  │ ┌────┐        ┌────┐     │  │          │
+        │                  │ │ R  │        │ R  │     │  │          │ Groups
+        │                  │ └────┘        └────┘     │  │          │
+        │                  │       ┌────┐             │  │          │
+        │                  │       │ R  │             │  │          │
+        │                  │       └────┘             │  │          │ (R)esource
+        │                  └──────────────────────────┘  │          -
+        └────────────────────────────────────────────────┘
+
+NOTE: Role inherited down to resources 
+  from Managemement Group > Subscription > Resource Group > Resource 
+
+
+Managemement Groups > Tenant Root Group > 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .
