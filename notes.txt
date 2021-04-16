@@ -1115,20 +1115,51 @@ NOTE: Role inherited down to resources
   from Managemement Group > Subscription > Resource Group > Resource 
 
 
-Managemement Groups > Tenant Root Group > 
+
+## Resource Groups
+## 
+
+- Resource Groups fundamental to ARM
+- Natural grouping of resources 
+
+Benefits:
+1. Group resources that share a common lifecycle
+2. RBAC is commonly applied at resource group level (get inherited down) 
+3. Policies can be applied at the resource group level
+4. Can configure tags (not inherited to container resources)
+      - policy can be written to write tag from resource group to resource
+
+NOTE: Resources exist within one and ONLY ONE Resource Group which cannot be nested
+
+Resource Groups are NOT:
+  - Boundaries of access
+  - Not confined to a region 
+        - When creating a Resource Group you set a region 
+            but that is where meta data is stored
+
++-------------------------------------------------------+
+|    +----------------+            +----------------+   |
+|    |                |            |                |   |
+|    |                |            |                |   |
+|    |                |            |                |   |
+|    +-Resource Group-+            +-Resource Group-+   |
+|        /                                              |
++-------/-----------------Subscription------------------+
+       /Scope                   ^
+      /                         |
+     /                          |
+  [Role]--------Assigned To-----|
+     |
+     |
+      -----Assigned To-----> [Group]
 
 
 
 
+## Azure AD Role Management
+## 
 
-
-
-
-
-
-
-
-
+# Azure AD Roles
 
 
 .
