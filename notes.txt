@@ -1353,6 +1353,12 @@ or use Azure AD portal: aad.portal.azure.com
 
 
 
+#################################################################################
+##  Microsoft Azure Solutions Architect: Design Governance
+#################################################################################
+
+## Resource Structure in Azure 
+## 
 
 
 
