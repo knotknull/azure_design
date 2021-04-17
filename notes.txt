@@ -1159,7 +1159,55 @@ Resource Groups are NOT:
 ## Azure AD Role Management
 ## 
 
-# Azure AD Roles
+## Azure AD Roles
+
+- Azure AD is a flat structure 
+- Roles are Azure AD wide
+- Administrative Units allow scoping supported by some roles
+    - place users and groups into an Admin Unit
+    - Give a Role at the scope of the Admin Unit 
+
+- Custom Roles possible but in preview
+
+NOTE: To assign role to a group, special cloud group must be used.
+      Roles are usually assigned to users. 
+
+
+Cloud Group has "is assignable to role property" (?)
+  - New Group > Azure AD roles can be assigned to the group (Preview): [yes]
+  - Global Admin and Role Admins can manage membership of group
+  - Credentials of members and owners of Role Assignable group
+      can only by changed by Authentication Administrator or Global Admin
+  NOTE: Can't nest Role Assignable groups
+
+
+
+## Azure Roles (ARM)
+
+- Large number of built-in roles
+- Three core roles apply to all resources
+    - Owner
+        - full owner to change and delegate
+    - Contributor 
+        - create and manage resources but can't change ACLs 
+    - Reader
+
+NOTE: Other roles specific to certain type of Azure resource
+      Many different types of roles in a Resource Group becuase a 
+      Resource Group can own any type of resource
+
+NOTE: However a Storage Account would have fewer number of roles becasue 
+      those roles would be specific to Storage Account resource 
+
+NOTE: Focus on assigning permissions to groups rather than users
+      Permissions are inherited 
+      Management Group > Subscription > Resource Group  
+
+
+## Role Structure
+
+
+
 
 
 .
