@@ -1206,8 +1206,35 @@ NOTE: Focus on assigning permissions to groups rather than users
 
 ## Role Structure
 
+Resource Provider
+  - Can register in Subscription
 
+[Resource Provider]
+      |
+      |
+      |---[Resource #1 Definition]
+      |      |- Read / Write / Delete
+      |      |- Others
+      |
+      |---[Resource #2 Definition]
+      |      |- Read / Write / Delete
+      |      |- Others
+      |
+      |
+      |
+      |
 
+Subscription > Contributor > Permissions > Compute > 
+Virtual Machines 
+  - Read  : Get Virtual Machine
+  - Write : Create or Update Virtual Machine
+  - Delete: Delete Virtual Machine
+  - Other Actions:
+      - Assess virtual machine for OS update
+      - Cancel install OS update
+      - Deallocate Virtual Machine
+      - Power off Virtual Machine
+      ......
 
 
 .
