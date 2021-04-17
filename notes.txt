@@ -1312,14 +1312,31 @@ Send notification when members are assigned as active
 
 
 ## Access Reviews
+  - recertify assignments by admins, reviewers, end users self cert
+  - special capabilities for guest access
+  - can group reviews into a program (i.e. for an audit )
+  - P2 feature
+
+> Privileged Identity Managemement >  Azure AD Roles > Manage
+  > Access Reviews
+        - Name
+        - Start / End
+        - Frequency
+        - Scope (Users)
+        - Role
+        - Reviewers
 
 
+> Azure Active Directory >  Identity Governance > Access Reviews
+  - Members of a Group
+    Assigned to an application
 
 
+User goes to: 
+myaccess.microsfot.com > Access Reviews 
 
 
-
-
+## Identity Protection
 
 
 
