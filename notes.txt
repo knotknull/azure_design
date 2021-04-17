@@ -1337,6 +1337,22 @@ myaccess.microsfot.com > Access Reviews
 
 
 ## Identity Protection
+- P2 feature 
+- Provides insight into security of Azure AD identities 
+- Integrates w/ cyber security to look for compromised accounts
+- Utilizes machine learning 
+- User and sign-in risk (offline / online)
+- Enables risk-based conditional access
+
+Portal > Azure AD Identity Protection
+or use Azure AD portal: aad.portal.azure.com
+
+  - User risk policy
+  - Sign-in risk policy
+  - MFA registration policy
+
+
+
 
 
 
