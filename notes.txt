@@ -1236,5 +1236,99 @@ Virtual Machines
       - Power off Virtual Machine
       ......
 
+## Custom Structure
+
+- Custom roles can be created where built-in roles 
+  do not meet requirements
+- Specific actions for types of resources 
+- With code using an existing role and modify
+
+Resource Group > IAM > Roles > Add > Custom Roles
+  Clone a role
+  Start from scratch
+  Start from JSON file
+  > Role to Clone > 
+      - Add Permissions
+      - Exclude Permissions
+
+  > Assignable Scope
+      - Subscription
+      - Resource Group
+
+
+
+## Role Assignment
+
+  - Assign roles to groups, then add users to group 
+  - Group granted role at a specific scope
+            - Management Group, Subscription, Resource Grp
+
+
+## Privileged Identity Management
+
+  - P2 feature
+  - Enable just-in-time elevation
+      - right to elevate up permanently or for period of time
+  - Users can elevate for a fixed duration after additional 
+     authenication i.e. MFA
+  - Integration w/ ticketing and approval workflow
+
+> Azure Portal > Privileged Identity Management > Role setting details > 
+
+[Activation]   
+  duration
+  activiation required (MFA)
+  justification
+  ticket
+  approval
+
+[Assignent]  
+  allow permanent eligible assignment 
+    expire after:
+  allow permanent active assignment 
+    expire after:
+  require MFA
+  require justification
+
+[Notificaiton]
+Send notification when members are assigned as eligible
+Send notification when members are assigned as active
+
+> Azure Portal > Privileged Identity Management > Resources
+    - Resource Group
+    - Subscription
+    - Management Group 
+      > Settings > Roles > Edit 
+
+  > Add Assignment 
+  > Role 
+  > Members
+  > Settings 
+
+[Assignent]  
+  Type: [Eligible] [Active] 
+  Assignment Starts: 
+  Assignment Ends: 
+
+
+## Access Reviews
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .
