@@ -1079,27 +1079,27 @@ Policy  -------│   │                              │ Azure AD  │   Only 1
                │   │  I                           └───────────┘
 Cost Mgmt      │   │
                │   │  N
-Policy    │    │   │                                   ┌──────┐     
-  │       │    │   │  H                                │ Root │     -
+ RBAC     │    │   │                                   ┌──────┐     
+  │       │    │   │  H                                │ Root │     _
   │       │    └───┼─────────────────────────────────> └──────┘     │
   │       │        │  E                                             │
   │       │        │                             ┌────┐   ┌────┐    │ Management
-  │       │        │  R                          │ RG │   │ RG │    │
+  │       │        │  R                          │ MG │   │ MG │    │
   │       │        │                             └────┘   └────┘    │ Groups
   │       │        │  I                                             │
   │       └────────┼───────────────────> ┌────┐  ┌────┐  ┌────┐     │
-  │                │  T                  │ RG │  │ RG │  │ RG │     │
-  │                │                     └─┬──┘  └────┘  └──┬─┘     -
+  │                │  T                  │ MG │  │ MG │  │ MG │     │
+  │                │                     └─┬──┘  └────┘  └──┬─┘     _
   │                │  A                    │                │       
   │                │                 ┌─────┴─────┐          │
-  │                │  N              │           │          │       -
+  │                │  N              │           │          │       _
   └────────────────┼────────────>  ┌─┴─┐        ┌┴──┐     ┌─┴─┐     │
                    │  C            │ S │        │ S │     │ S │     │ Subscriptions
                    │               └─┬─┘        └───┘     └───┘     │  (sub in only 1 MG)
-                   v  E              │                              -
+                   v  E              │                              _
                                      │                              
         ┌────────────────────────────┴───────────────────┐
-        │                                                │          -
+        │                                                │          _
         │  ┌────┐  ┌────┐  ┌──────────────────────────┐  │          │
         │  │ RG │  │ RG │  │                       RG │  │          │ Resource
         │  └────┘  └────┘  │ ┌────┐        ┌────┐     │  │          │
@@ -1108,7 +1108,7 @@ Policy    │    │   │                                   ┌─────�
         │                  │       ┌────┐             │  │          │
         │                  │       │ R  │             │  │          │
         │                  │       └────┘             │  │          │ (R)esource
-        │                  └──────────────────────────┘  │          -
+        │                  └──────────────────────────┘  │          _
         └────────────────────────────────────────────────┘
 
 NOTE: Role inherited down to resources 
@@ -1357,8 +1357,165 @@ or use Azure AD portal: aad.portal.azure.com
 ##  Microsoft Azure Solutions Architect: Design Governance
 #################################################################################
 
-## Resource Structure in Azure 
+## Governance in Azure 
 ## 
+
+# Resource Structure in Azure 
+
+- Can only auth to 1 Azure AD
+- Managemement Groups have 1 auth
+- Subscription can only live in 1 Mgmt Grp
+- Create Resource Groups under Subscription 
+- Create Resources under a Resource Group
+
+Authorization by granting Roles (actions, permissions) 
+to security principals (users, groups)  at a scope
+          scope:   Management Groups
+                   Subscriptions 
+                   Resource Groups 
+                   or even Resource (not advised)
+
+
+                         Azure Resource Structure
+
+
+                                                  ┌───────────┐
+Policy  -------│   │                              │ Azure AD  │   Only 1 Azure AD
+               │   │  I                           └───────────┘
+Cost Mgmt      │   │                                      |
+               │   │  N                                   |
+ RBAC     │    │   │                                   ┌──────┐     
+  │       │    │   │  H                                │ Root │     _
+  │       │    └───┼─────────────────────────────────> └──────┘     │
+  │       │        │  E                                             │
+  │       │        │                             ┌────┐   ┌────┐    │ Management
+  │       │        │  R                          │ MG │   │ MG │    │
+  │       │        │                             └────┘   └────┘    │ Groups
+  │       │        │  I                                             │
+  │       └────────┼───────────────────> ┌────┐  ┌────┐  ┌────┐     │
+  │                │  T                  │ MG │  │ MG │  │ MG │     │
+  │                │                     └─┬──┘  └────┘  └──┬─┘     _
+  │                │  A                    │                │       
+  │                │                 ┌─────┴─────┐          │
+  │                │  N              │           │          │       _
+  └────────────────┼────────────>  ┌─┴─┐        ┌┴──┐     ┌─┴─┐     │
+                   │  C            │ S │        │ S │     │ S │     │ Subscriptions
+                   │               └─┬─┘        └───┘     └───┘     │  (sub in only 1 MG)
+                   v  E              │                              _
+                                     │                              
+        ┌────────────────────────────┴───────────────────┐
+        │                                                │          _
+        │  ┌────┐  ┌────┐  ┌──────────────────────────┐  │          │
+        │  │ RG │  │ RG │  │                       RG │  │          │ Resource
+        │  └────┘  └────┘  │ ┌────┐        ┌────┐     │  │          │
+        │                  │ │ R  │        │ R  │     │  │          │ Groups
+        │                  │ └────┘        └────┘     │  │          │
+        │                  │       ┌────┐             │  │          │
+        │                  │       │ R  │             │  │          │
+        │                  │       └────┘             │  │          │ (R)esource
+        │                  └──────────────────────────┘  │          _
+        └────────────────────────────────────────────────┘
+
+NOTE: Role inherited down to resources 
+  from Managemement Group > Subscription > Resource Group > Resource 
+
+
+
+# Naming Standards 
+- Have standard that is used on prem and across clouds
+- Should include:
+      - location
+      - env
+      - app
+      - purpose
+      - resource type
+
+
+# Tags
+  - metadata on resources w/ key - value
+        - all resources except Management Groups
+  - 50 tags per resource ***
+    - search
+    - organization
+    - filter / costs
+
+
+  - Common tags:
+    - cost center / biz unit
+    - app / func / env / owner
+    - classification / compliance
+    - could add JSON document in value
+
+NOTE: Enforce using Azure Policy
+    - apply a Policy to a Subscription to enforce certain tags
+
+
+NOTE: Tags are NOT inherited but can be copied from a parent 
+       to a child via Policy
+
+Built-in policy:  Inherit a tag from the resource group if missing
+      - inherit a tag from the subscription
+      - inherit a tag from the resource group
+
+
+# Using Azure Policy
+  - Azure Policy can assess compliance and enforce requirements
+  - Policies consist of rules 
+  - Rules based on resource Properties
+  - Effects:
+      - Audit
+      - Deny
+      - Append
+      - Modify
+      - DeployIfNotExists (missing agent, etc.)
+  - Policies can be grouped into initiatives
+        - Initiative can then be assigned to Resource Group, 
+              Subscription, Managemement Group
+
+NOTE: Enforced at fabric level: CLI, API, REST doesn't matter
+
+
+Initiative Example:
+Azure > Policy > Initiative > 
+   Enable Monitoring in Azure Security Center [123 policies] 
+
+
+# Assigning Policies
+
+Azure > Policy > Assignments
+      > Assign Initiative
+      > Assign Policy
+
+
+# Viewing Compliance 
+
+
+Azure > Policy > Policy Compliance   
+
+# Best Practices
+
+  - Map policies to org written policies
+  - Use audit before deny / remediate
+  - Apply to right level of structure and start small
+          NOTE: Don't apply restricitive policy to Management Group
+
+  - Broad policy toward top of structure, detailed policy closer to resource
+  - Have team responsible for tracking compliance
+  - Use good names / descriptions 
+
+
+
+## Applying Base Configurations with Bluprints
+## 
+
+
+
+
+
+
+
+
+
 
 
 
